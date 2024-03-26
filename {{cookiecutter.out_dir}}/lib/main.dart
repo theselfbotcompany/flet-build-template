@@ -162,7 +162,7 @@ void main() async {
 //   }
 
   if (Platform.isMacOS) {
-    _configureMacosWindowUtils();
+    await _configureMacosWindowUtils();
   }
 }
 
