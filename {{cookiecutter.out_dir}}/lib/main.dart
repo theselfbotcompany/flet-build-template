@@ -96,6 +96,8 @@ Future<void> main() async {
     debugPrint = (String? message, {int? wrapWidth}) => null;
   }
 
+//   await Window.initialize();
+
   {% for dep in cookiecutter.flutter.dependencies %}
   {{ dep }}.ensureInitialized();
   {% endfor %}
@@ -162,10 +164,9 @@ Future<void> main() async {
 //   }
 
   if (Platform.isMacOS) {
-    await Window.initialize();
-//     await Window.setEffect(
-//       effect: WindowEffect.fullScreenUI,
-//     );
+    await Window.setEffect(
+      effect: WindowEffect.fullScreenUI,
+    );
     await _configureMacosWindowUtils();
   }
 }
