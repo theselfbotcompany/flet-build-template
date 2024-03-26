@@ -96,7 +96,7 @@ Future<void> main() async {
     debugPrint = (String? message, {int? wrapWidth}) => null;
   }
 
-//   await Window.initialize();
+  await Window.initialize();
 
   {% for dep in cookiecutter.flutter.dependencies %}
   {{ dep }}.ensureInitialized();
