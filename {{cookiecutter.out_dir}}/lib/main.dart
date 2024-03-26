@@ -165,10 +165,10 @@ Future<void> main() async {
 //   }
 
   if (Platform.isMacOS) {
-//     await Window.setEffect(
-//       effect: WindowEffect.fullScreenUI,
-//     );
-    await _configureMacosWindowUtils();
+    await Window.setEffect(
+      effect: WindowEffect.fullScreenUI,
+    );
+//     await _configureMacosWindowUtils();
   }
 }
 
