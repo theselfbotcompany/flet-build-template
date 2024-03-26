@@ -157,19 +157,20 @@ Future prepareApp() async {
   } else {
     await setupDesktop();
 
-    // Initialize the window and set the effect
-    await Window.initialize();
-    if (Platform.isWindows) {
-      await Window.setEffect(
-        effect: WindowEffect.mica,
-      );
-    }
-    if (Platform.isMacOS) {
-      await Window.setEffect(
-        effect: WindowEffect.fullScreenUI,
-      );
-      // await _configureMacosWindowUtils();
-    }
+    // Initialize the window and set the effect asynchronously
+    Window.initialize().then((_) {
+      if (Platform.isWindows) {
+        Window.setEffect(
+          effect: WindowEffect.mica,
+        );
+      }
+      if (Platform.isMacOS) {
+        Window.setEffect(
+          effect: WindowEffect.fullScreenUI,
+        );
+        // _configureMacosWindowUtils();
+      }
+    });
 
     // extract app from asset
     appDir = await extractAssetZip(assetPath, checkHash: true);
