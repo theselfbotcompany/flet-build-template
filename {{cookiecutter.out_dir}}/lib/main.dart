@@ -332,7 +332,6 @@ class BlankScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Loading...",
-                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
