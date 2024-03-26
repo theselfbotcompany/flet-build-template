@@ -90,7 +90,7 @@ Future<void> _configureMacosWindowUtils() async {
   await config.apply();
 }
 
-void main() async {
+Future<void> main() async {
   if (isProduction) {
     // ignore: avoid_returning_null_for_void
     debugPrint = (String? message, {int? wrapWidth}) => null;
