@@ -161,13 +161,11 @@ Future<void> main() async {
 //     });
 //   }
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await Window.initialize();
-
   if (Platform.isMacOS) {
-    await Window.setEffect(
-      effect: WindowEffect.fullScreenUI,
-    );
+    await Window.initialize();
+//     await Window.setEffect(
+//       effect: WindowEffect.fullScreenUI,
+//     );
     await _configureMacosWindowUtils();
   }
 }
