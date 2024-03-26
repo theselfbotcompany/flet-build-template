@@ -84,11 +84,6 @@ String assetsDir = "";
 String appDir = "";
 Map<String, String> environmentVariables = {};
 
-Future<void> _configureMacosWindowUtils() async {
-  const config = MacosWindowUtilsConfig();
-  await config.apply();
-}
-
 Future<void> main() async {
   if (isProduction) {
     // ignore: avoid_returning_null_for_void
