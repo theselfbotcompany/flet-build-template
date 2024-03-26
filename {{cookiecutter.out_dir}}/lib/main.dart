@@ -157,6 +157,20 @@ Future prepareApp() async {
   } else {
     await setupDesktop();
 
+    // Initialize the window and set the effect
+    await Window.initialize();
+    if (Platform.isWindows) {
+      await Window.setEffect(
+        effect: WindowEffect.mica,
+      );
+    }
+    if (Platform.isMacOS) {
+      await Window.setEffect(
+        effect: WindowEffect.fullScreenUI,
+      );
+      // await _configureMacosWindowUtils();
+    }
+
     // extract app from asset
     appDir = await extractAssetZip(assetPath, checkHash: true);
 
@@ -191,21 +205,6 @@ Future<String?> runPythonApp() async {
   ServerSocket outSocketServer;
   String socketAddr = "";
   StringBuffer pythonOut = StringBuffer();
-
-  await Window.initialize();
-
-  if (Platform.isWindows) {
-    await Window.setEffect(
-      effect: WindowEffect.mica,
-    );
-  }
-
-  if (Platform.isMacOS) {
-    await Window.setEffect(
-      effect: WindowEffect.fullScreenUI,
-    );
-//     await _configureMacosWindowUtils();
-  }
 
   if (defaultTargetPlatform == TargetPlatform.windows) {
     var tcpAddr = "127.0.0.1";
