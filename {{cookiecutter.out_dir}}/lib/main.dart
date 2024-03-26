@@ -96,18 +96,18 @@ Future<void> main() async {
     debugPrint = (String? message, {int? wrapWidth}) => null;
   }
 
+  if (!kIsWeb) {
+    if (Platform.isMacOS) {
+      await _configureMacosWindowUtils();
+    }
+  }
+
   WidgetsFlutterBinding.ensureInitialized();
   {% for dep in cookiecutter.flutter.dependencies %}
   {{ dep }}.ensureInitialized();
   {% endfor %}
 
   await Window.initialize();
-
-  if (!kIsWeb) {
-    if (Platform.isMacOS) {
-      await _configureMacosWindowUtils();
-    }
-  }
 
   runApp(FutureBuilder(
       future: prepareApp(),
