@@ -100,8 +100,6 @@ void main() async {
   {{ dep }}.ensureInitialized();
   {% endfor %}
 
-//   await Window.initialize();
-
   runApp(FutureBuilder(
       future: prepareApp(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -193,6 +191,8 @@ Future<String?> runPythonApp() async {
   ServerSocket outSocketServer;
   String socketAddr = "";
   StringBuffer pythonOut = StringBuffer();
+
+  await Window.initialize();
 
   if (Platform.isWindows) {
     await Window.setEffect(
