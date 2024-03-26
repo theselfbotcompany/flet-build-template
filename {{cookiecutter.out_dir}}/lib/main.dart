@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart' as path;
 import 'package:serious_python/serious_python.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_acrylic/flutter_acrylic.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 {% for dep in cookiecutter.flutter.dependencies %}
 import 'package:{{ dep }}/{{ dep }}.dart' as {{ dep }};
@@ -83,6 +85,11 @@ String assetsDir = "";
 String appDir = "";
 Map<String, String> environmentVariables = {};
 
+Future<void> _configureMacosWindowUtils() async {
+  const config = MacosWindowUtilsConfig();
+  await config.apply();
+}
+
 void main() async {
   if (isProduction) {
     // ignore: avoid_returning_null_for_void
@@ -92,6 +99,8 @@ void main() async {
   {% for dep in cookiecutter.flutter.dependencies %}
   {{ dep }}.ensureInitialized();
   {% endfor %}
+
+  await Window.initialize();
 
   runApp(FutureBuilder(
       future: prepareApp(),
@@ -184,6 +193,19 @@ Future<String?> runPythonApp() async {
   ServerSocket outSocketServer;
   String socketAddr = "";
   StringBuffer pythonOut = StringBuffer();
+
+  if (Platform.isWindows) {
+    await Window.setEffect(
+      effect: WindowEffect.mica,
+    );
+  }
+
+  if (Platform.isMacOS) {
+    await Window.setEffect(
+      effect: WindowEffect.fullScreenUI,
+    );
+    await _configureMacosWindowUtils();
+  }
 
   if (defaultTargetPlatform == TargetPlatform.windows) {
     var tcpAddr = "127.0.0.1";

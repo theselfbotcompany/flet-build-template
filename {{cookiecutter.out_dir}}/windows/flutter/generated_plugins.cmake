@@ -3,7 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  audioplayers_windows
+  flutter_acrylic
   screen_retriever
   serious_python_windows
   url_launcher_windows
