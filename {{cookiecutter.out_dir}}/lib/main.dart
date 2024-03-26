@@ -101,12 +101,6 @@ Future<void> main() async {
   {{ dep }}.ensureInitialized();
   {% endfor %}
 
-  if (!kIsWeb) {
-    if (Platform.isMacOS) {
-      await _configureMacosWindowUtils();
-    }
-  }
-
   await Window.initialize();
 
   runApp(FutureBuilder(
@@ -327,7 +321,24 @@ class BlankScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SizedBox.shrink(),
+      body: SafeArea(
+          child: Container(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Loading...",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ],
+            ),
+          ],
+        ),
+      )),
     );
   }
 }
