@@ -103,6 +103,12 @@ Future<void> main() async {
 
   await Window.initialize();
 
+  if (!kIsWeb) {
+    if (Platform.isMacOS) {
+      await _configureMacosWindowUtils();
+    }
+  }
+
   runApp(FutureBuilder(
       future: prepareApp(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -148,27 +154,16 @@ Future<void> main() async {
         }
       }));
 
-//   if (!kIsWeb) {
-//     Window.initialize().then((_) {
-//       if (Platform.isWindows) {
-//         Window.setEffect(
-//           effect: WindowEffect.mica,
-//         );
-//       }
-//       if (Platform.isMacOS) {
-//         Window.setEffect(
-//           effect: WindowEffect.fullScreenUI,
-//         );
-//         // _configureMacosWindowUtils();
-//       }
-//     });
-//   }
-
-  if (Platform.isMacOS) {
-    await Window.setEffect(
-      effect: WindowEffect.fullScreenUI,
-    );
-//     await _configureMacosWindowUtils();
+  if (!kIsWeb) {
+    if (Platform.isMacOS) {
+      Window.setEffect(
+        effect: WindowEffect.fullScreenUI,
+      );
+    } else {
+      Window.setEffect(
+        effect: WindowEffect.mica,
+      );
+    }
   }
 }
 
