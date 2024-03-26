@@ -98,9 +98,9 @@ Future<void> main() async {
 
   await Window.initialize();
 
-  {% for dep in cookiecutter.flutter.dependencies %}
-  {{ dep }}.ensureInitialized();
-  {% endfor %}
+//   {% for dep in cookiecutter.flutter.dependencies %}
+//   {{ dep }}.ensureInitialized();
+//   {% endfor %}
 
   runApp(FutureBuilder(
       future: prepareApp(),
