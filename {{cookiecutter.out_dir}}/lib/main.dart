@@ -144,22 +144,6 @@ void main() async {
           return const MaterialApp(home: BlankScreen());
         }
       }));
-
-  if (!kIsWeb) {
-    Window.initialize().then((_) {
-      if (Platform.isWindows) {
-        Window.setEffect(
-          effect: WindowEffect.mica,
-        );
-      }
-      if (Platform.isMacOS) {
-        Window.setEffect(
-          effect: WindowEffect.fullScreenUI,
-        );
-        // _configureMacosWindowUtils();
-      }
-    });
-  }
 }
 
 Future prepareApp() async {
