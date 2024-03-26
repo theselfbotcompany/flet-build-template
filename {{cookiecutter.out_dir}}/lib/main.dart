@@ -90,7 +90,7 @@ Future<void> _configureMacosWindowUtils() async {
   await config.apply();
 }
 
-Future<void> main() async {
+void main() async {
   if (isProduction) {
     // ignore: avoid_returning_null_for_void
     debugPrint = (String? message, {int? wrapWidth}) => null;
@@ -204,7 +204,7 @@ Future<String?> runPythonApp() async {
     await Window.setEffect(
       effect: WindowEffect.fullScreenUI,
     );
-    await _configureMacosWindowUtils();
+//     await _configureMacosWindowUtils();
   }
 
   if (defaultTargetPlatform == TargetPlatform.windows) {
