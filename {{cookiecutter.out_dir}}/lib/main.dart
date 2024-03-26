@@ -100,7 +100,7 @@ void main() async {
   {{ dep }}.ensureInitialized();
   {% endfor %}
 
-  await Window.initialize();
+//   await Window.initialize();
 
   runApp(FutureBuilder(
       future: prepareApp(),
