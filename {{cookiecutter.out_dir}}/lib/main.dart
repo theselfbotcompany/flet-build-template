@@ -144,20 +144,8 @@ void main() async {
           return const MaterialApp(home: BlankScreen());
         }
       }));
-}
 
-Future prepareApp() async {
-  if (kIsWeb) {
-    // web mode - connect via HTTP
-    pageUrl = Uri.base.toString();
-    var routeUrlStrategy = getFletRouteUrlStrategy();
-    if (routeUrlStrategy == "path") {
-      setPathUrlStrategy();
-    }
-  } else {
-    await setupDesktop();
-
-    // Initialize the window and set the effect asynchronously
+  if (!kIsWeb) {
     Window.initialize().then((_) {
       if (Platform.isWindows) {
         Window.setEffect(
@@ -171,6 +159,19 @@ Future prepareApp() async {
         // _configureMacosWindowUtils();
       }
     });
+  }
+}
+
+Future prepareApp() async {
+  if (kIsWeb) {
+    // web mode - connect via HTTP
+    pageUrl = Uri.base.toString();
+    var routeUrlStrategy = getFletRouteUrlStrategy();
+    if (routeUrlStrategy == "path") {
+      setPathUrlStrategy();
+    }
+  } else {
+    await setupDesktop();
 
     // extract app from asset
     appDir = await extractAssetZip(assetPath, checkHash: true);
