@@ -319,7 +319,7 @@ class BlankScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -331,6 +331,7 @@ class BlankScreen extends StatelessWidget {
                 children: [
                   Text(
                     "Loading...",
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ],
               ),
